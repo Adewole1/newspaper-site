@@ -1,0 +1,12 @@
+{% extends "users/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+  <h1>Edit</h1>
+  <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+
+      <button type="submit" class="btn btn-info ml-2">Update</button>
+  </form>
+{% endblock content %}

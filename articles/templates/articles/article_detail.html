@@ -1,0 +1,30 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+  Articles/{{ object.title }}
+{% endblock title %}
+
+{% block content %}
+  <div class="article-entry">
+      <h2>{{ object.title }}</h2>
+      <p>Created by {{ object.author }} | at {{ object.date}} </p>
+      <p>{{ object.body }}</p>
+  </div>
+  <p><a href="{% url 'article_edit' pk=article.pk %}">Edit</a> | 
+    <a href="{% url 'article_delete' pk=article.pk %}">Delete</a></p>
+    <br />
+    <div class="card-footer">
+      {% for comment in article.comments.all %}
+        <p>
+          <span class="font-weight-bolder">
+            {{ comment.author }} &middot;
+          </span>
+          {{ comment }}
+        </p>
+      {% endfor %}
+      <p><a href="{% url 'comment_new' pk=article.pk %}">Create New Comment</a></p>
+      <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+
+    </div>
+    
+{% endblock content %}
